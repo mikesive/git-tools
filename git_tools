@@ -1,0 +1,12 @@
+#!/usr/local/bin/ruby -w
+
+require_relative './branch_clean'
+require_relative './branch_push'
+require_relative './command_parser'
+
+args = ARGV.dup
+command = args.shift
+cmd_klass = CommandParser.command_klass(command)
+options = CommandParser.options(command, args)
+
+cmd_klass.new.run(options)
